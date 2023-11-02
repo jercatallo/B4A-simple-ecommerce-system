@@ -1,0 +1,123 @@
+﻿Build1=Default,b4a.example
+File1=layBlouse.bal
+File10=layShorts.bal
+File11=laysnacks.bal
+File12=layWedges.bal
+File13=Shoes.bal
+File2=layClothes.bal
+File3=laydrinks.bal
+File4=layHeels.bal
+File5=layLoafers.bal
+File6=laymeals.bal
+File7=Layout.bal
+File8=layPants.bal
+File9=layShoes.bal
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=core
+Library2=xui
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="29"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Blouse
+Module2=Clothes
+Module3=Drinks
+Module4=Meals
+Module5=Pants
+Module6=Shoes
+Module7=Shorts
+Module8=Snacks
+Module9=Starter
+NumberOfFiles=13
+NumberOfLibraries=2
+NumberOfModules=9
+Version=10.7
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+	Dim priceforshoes As String
+	Dim priceforclothes As String
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	Private txttotal As EditText
+	Private btnClothes As Button
+	Private btnShoes As Button
+	Private txtpriceshoes As EditText
+	Private txtpriceclothes As EditText
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+End Sub
+
+Sub Activity_Resume
+	txtpriceshoes.Text = priceforshoes
+	txtpriceclothes.Text = priceforclothes
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Private Sub btnTotal_Click
+	If  txtpriceshoes.Text = "" Or txtpriceclothes.Text = "" Then
+		Msgbox("Please Complete your Order First", "Warning")
+	Else
+		txttotal.Text = txtpriceshoes.Text + txtpriceclothes.Text
+	End If
+	
+End Sub
+
+Private Sub btnexit_Click
+	Dim res As Int
+	
+	res = Msgbox2("Are you sure to exit?","Exit","Yes","","Cancel",Null)
+	
+	If res = DialogResponse.POSITIVE Then
+		ExitApplication
+	End If
+
+End Sub
+
+
+Private Sub btnShoes_Click
+	StartActivity(Shoes)
+End Sub
+
+Private Sub btnClothes_Click
+	StartActivity(Clothes)
+End Sub
+
+Private Sub btnClear_Click
+	txttotal.Text = ""
+	txtpriceshoes.Text = ""
+	txtpriceclothes.Text = ""
+End Sub
